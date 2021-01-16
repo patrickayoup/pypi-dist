@@ -10,12 +10,10 @@ import click
 from git import Repo
 from setuptools.sandbox import run_setup
 
-
-PROJECT_ROOT = Path(os.path.dirname(os.path.abspath(__file__)))
-
-VERSION_PATH = PROJECT_ROOT.joinpath(Path('.VERSION'))
-SETUP_PATH = PROJECT_ROOT.joinpath(Path('setup.py'))
-DIST_PATH = PROJECT_ROOT.joinpath(Path('dist'))
+REPO_PATH = Path('.')
+VERSION_PATH = Path('.VERSION')
+SETUP_PATH = Path('setup.py')
+DIST_PATH = Path('dist')
 PYPIRC_PATH = Path.home().joinpath('.pypirc')
 
 RELEASE_TYPE_CHOICES = click.Choice(['major', 'minor', 'patch'])
@@ -99,7 +97,7 @@ def dist_release(release_type, version, pypi_username, pypi_password):
             raise click.ClickException('Pypi username/password must be provided with --pypi-username/--pypi-password arguments, '
                                        'PYPIDIST_USERNAME/PYPIDIST_PASSWORD environment variables, or with a .pypirc file in your home directory.')
 
-    repo = Repo(PROJECT_ROOT)
+    repo = Repo(REPO_PATH)
     local_changes = check_for_local_changes(repo)
 
     if local_changes:
