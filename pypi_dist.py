@@ -8,6 +8,7 @@ import subprocess
 import semver
 import click
 from git import Repo
+from setuptools.sandbox import run_setup
 
 
 PROJECT_ROOT = Path(os.path.dirname(os.path.abspath(__file__)))
@@ -139,7 +140,7 @@ def dist_release(release_type, version, pypi_username, pypi_password):
         shutil.rmtree(DIST_PATH)
 
     click.echo('Building source distribution')
-    subprocess.check_call(['python', 'setup.py', 'sdist', 'bdist_wheel'])
+    run_setup(str(SETUP_PATH), ['sdist', 'bdist_wheel'])
 
     click.echo('Publishing artifacts to PyPi')
 

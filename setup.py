@@ -31,7 +31,8 @@ setup(
                       'twine',
                       'semver',
                       'click',
-                      'wheel'],
+                      'wheel',
+                      'setuptools'],
     long_description=read(README_PATH),
     long_description_content_type='text/markdown',
     classifiers=[
