@@ -25,7 +25,7 @@ setup(
     keywords='pypi',
     py_modules=['pypi_dist'],
     entry_points = {
-        'console_scripts': ['pypi-dist=pypi_dist'],
+        'console_scripts': ['pypi-dist=pypi_dist:dist_release'],
     },
     install_requires=['gitpython',
                       'twine',
